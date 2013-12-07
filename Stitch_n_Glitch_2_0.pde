@@ -48,7 +48,6 @@ Textlabel patternoption;
 controlP5.Group g1,g2;
 DropdownList d1, d2;
 CheckBox checkbox;
-//CheckBox patternBox;
 
 //toxi color things
 HashMap allColors; //
@@ -112,7 +111,6 @@ void setup(){
     complete[i] = new CompleteImage(blank, dummy1, false, dummy2, false);
   }
 
-  //lena = loadImage("lena150.jpg");
 
   background(bg);
   noStroke();
@@ -187,7 +185,6 @@ void loadFile(File selection) {
     }
     workImg=new PImage(imgWidth, imgHeight, ARGB);
 
-    //inputSelected = false;
     imageLoaded = true;
   } 
   else {
@@ -296,10 +293,10 @@ void draw(){
      
      switch(imgSel){
        case(0):
-         //working1 = img;
+         
          fill(orange_passive,75);
          rect(300,0,300,300);
-         //checkbox.getItem(3).setVisible(complete[0].canPat);
+
          patternBox.setVisible(complete[0].canPat);
          if(complete[0].simPat){
           patternBox.getItem(2).setVisible(true);
@@ -312,7 +309,7 @@ void draw(){
        case(1):
          fill(orange_passive,75);
          rect(600,0,300,300);
-         //checkbox.getItem(3).setVisible(complete[1].canPat);
+
          patternBox.setVisible(complete[1].canPat);
          if(complete[1].simPat){
           patternBox.getItem(2).setVisible(true);
@@ -325,12 +322,9 @@ void draw(){
         case(2):
          
          stroke(orange_passive,75);
-         //noFill();
-         //fill(orange_passive,100);
          rect(300,300,300,300);
-         //noStroke();
-         //checkbox.getItem(3).setVisible(complete[2].canPat);
          patternBox.setVisible(complete[2].canPat);
+
          if(complete[2].simPat){
           patternBox.getItem(2).setVisible(true);
           patternBox.getItem(3).setVisible(true); 
@@ -342,7 +336,6 @@ void draw(){
        case(3):
          fill(orange_passive,75);
          rect(600,300,300,300);
-         //checkbox.getItem(3).setVisible(complete[3].canPat);
          patternBox.setVisible(complete[3].canPat);
          if(complete[3].simPat){
           patternBox.getItem(2).setVisible(true);
@@ -385,16 +378,6 @@ void draw(){
  
  message.position().y += ((isOpen==true ? 400 : 580) - message.position().y) *0.2; 
  
- /*
- if(checkbox.getItem(4).isActive()){
-  
-  dpat.setVisible(true); 
-   
- }else{
-   
-  dpat.setVisible(false);  
- }
- */
   
 }
 
@@ -427,7 +410,6 @@ void saveCSVfile(){
   txt.append("\ndata.csv (done)..");
   actBar.isVisible = false;
 
-  //actBar.isVisible(false);
   
 }
 
@@ -506,15 +488,7 @@ public void doExport(int sel){
      complete[exportNum].myImg.save(outpath+"/"+time+"_image.tiff"); 
      txt.append("\nimage.tiff (done)..");
    }
-   /*
-   if(code.contains("l")){
-    
-    //colorlist
-      
-      makeColorList.start();
-     
-   }
-   */
+   
    if(patterncode.contains("s") || patterncode.contains("e")){
    
      makeColorList.start();
@@ -528,7 +502,6 @@ public void doExport(int sel){
     makeMultipage.start(); 
      
    }
-   //actBar.isVisible = false;
   
 }
 
