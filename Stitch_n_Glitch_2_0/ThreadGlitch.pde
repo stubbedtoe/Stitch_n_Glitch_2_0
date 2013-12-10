@@ -195,18 +195,39 @@ public class ThreadGlitch implements Runnable {
 
 
         skeins = new HashMap();
+        int maxChecks = palette.size();
 
         //make the full skeins list of objects
         for (int j = 0; j < pixelLength; j++) {
 
           color blah = corrupt.pixels[j];
           liveCol = col.newARGB(blah);
-          some = palette.sortByProximityTo(liveCol, false);
-          liveCol = some.get(0);
-          //used.add(liveCol);
+          /*
+
+          FROM the STITCHER library (avoid sorting palette)
+
+          */
+
+          float closest = palette.get(0).distanceToRGB(liveCol);
+          int index = 0;
+
+          for(int i=0; i<maxChecks; i++){
+            float test = palette.get(i).distanceToRGB(liveCol);
+            if(test < closest){
+              index = i;
+              closest = test;
+            }
+          }
+
+          liveCol = palette.get(index);
+
+          //old method below
+
+          //some = palette.sortByProximityTo(liveCol, false);
+          //liveCol = some.get(0);
+          
           blah = liveCol.toARGB();
-          String temp = liveCol.toString();
-          // println("working key: "+temp);
+
           if (skeins.containsKey(blah)) {
             Floss f = (Floss) skeins.get(blah);
             f.count();
